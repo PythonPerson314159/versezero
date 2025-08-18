@@ -20,18 +20,23 @@
 <script>
 
 
-async function getData(choicee) {
-	const response = await fetch('bible.txt');
+async function getData(choicee,pagee) {
+document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
+	const response = await fetch('https://raw.githubusercontent.com/iamaverycoolperson29/bible/refs/heads/main/bible.txt');
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
 
     result = await response.text();
-
+if (isNaN(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")*1))
+{
+choicee=pagee
+pagee=0
+}
 
 
 	
-curpage=0
+curpage=pagee-1
 noninc=0
 if (choicee.slice(-6).toUpperCase()=="NONINC"){
 noninc=1
@@ -45,7 +50,7 @@ choicee=choicee.slice(0,-6)
 
 bookchapverse=bcv(choicee)
 numm=undefined
-if(choicee=="bible.html"){numm=Math.floor(Math.random()*31102)+2}
+if(choicee=="index.html"){numm=Math.floor(Math.random()*31102)+2}
 	if (numm!=undefined){
 [book,chap,verse]=bcv(result.split("\n")[numm+2])
 verse=[verse,verse]
@@ -132,7 +137,7 @@ result.split("\n").forEach((item)=>{a+=1;if (bcv(item).toString()==book+","+chap
 	for (j=b;j<=c-noninc;j++){
 	options.push(bcv(result.split("\n")[j]).toString())
 	}
-document.title=choicee.replace("&nbsp;"," ")
+document.title="VerseZero - "+choicee.replace("&nbsp;"," ")
 	
 verese=verse
 maxx=0
@@ -170,14 +175,15 @@ display(curpage)
   
   
   
-  getData(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
+
+  getData(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
   
 
 let lastUrl = location.href;
 setInterval(() => {
   if (location.href != lastUrl) {
     lastUrl = location.href;
-  getData(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
+  getData(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
   }
   
   document.getElementById("ismob").innerHTML=["","<button onclick=goo();this.blur()>Search</button>"][window.kboardless()*1]
@@ -193,7 +199,7 @@ function goo(){
 
 
 function fin(){
-location.href="file:///C:/Users/cudenigwe/Downloads/bible.html#/"+document.getElementById("thinggy").value
+location.href="file:///C:/Users/cudenigwe/Downloads/index.html#/"+document.getElementById("thinggy").value+"/"+curpage
 document.getElementById("container").style.filter="none"
 document.getElementById("buttons").style.filter="none"
   document.getElementById("ontoop").innerHTML=''
@@ -286,7 +292,7 @@ window.kboardless = function() {
 function search(){
 curpage=0
  active=0
- location.href="file:///C:/Users/cudenigwe/Downloads/bible.html#/"+choice.replace("&nbsp;","%20")
+ location.href="file:///C:/Users/cudenigwe/Downloads/index.html#/"+choice.replace("&nbsp;","%20")+"/"+curpage
 
  document.getElementById("container").style.filter="none"
  document.getElementById("buttons").style.filter="none"
