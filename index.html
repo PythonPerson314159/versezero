@@ -52,7 +52,7 @@ choicee=choicee.slice(0,-6)
 
 }
 
-bookchapverse=bcv(choicee)
+bookchapverse=bcv(choicee.replace("&nbsp;"," "))
 numm=undefined
 if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[1].replace("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
 	if (numm!=undefined){
@@ -386,6 +386,7 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
 
 
