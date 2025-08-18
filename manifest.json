@@ -1,0 +1,12 @@
+{
+    "theme_color": "#110E3E",
+    "background_color": "#101010",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/",
+    "app_name": "VerseZero",
+    "short_name": "Verse0",
+    "description": "Minimalist, clutter-free Bible app",
+
+  
+}
