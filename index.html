@@ -51,7 +51,7 @@ choicee=choicee.slice(0,-6)
 
 bookchapverse=bcv(choicee)
 numm=undefined
-if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
+if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[1].replace("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
 	if (numm!=undefined){
 [book,chap,verse]=bcv(result.split("\n")[numm+2])
 verse=[verse,verse]
@@ -93,7 +93,7 @@ chap=[chap,chap]
 }
 
 if (navigator.onLine==false){
- document.getElementById("container").innerHTML="<div id=quote><h2>You're offline!</h2><h1>Please connect to a network to use [tool name] and reload the page<h1></div>"
+ document.getElementById("container").innerHTML="<div id=quote><h2>You're offline!</h2><h1>Please connect to a network to use VerseZero and reload the page<h1></div>"
 }
 
 	
@@ -206,7 +206,7 @@ function goo(){
 
 
 function fin(){
-location.href="https://versezero.netlify.app/#/"+document.getElementById("thinggy").value+"/"+curpage
+location.href="https://versezero.netlify.app/#/"+document.getElementById("thinggy").value
 document.getElementById("container").style.filter="none"
 document.getElementById("buttons").style.filter="none"
   document.getElementById("ontoop").innerHTML=''
@@ -282,7 +282,7 @@ function bcv(e){
 	bookscap=[]
 books.forEach((item)=>bookscap.push(item.toUpperCase()))
 	if (bookscap.includes(e.toUpperCase())){
-		return e
+		return [e]
 	}
 	
 e=e.replaceAll('&nbsp;',' ')
@@ -305,7 +305,7 @@ window.kboardless = function() {
 function search(){
 curpage=0
  active=0
- location.href="https://versezero.netlify.app/#/"+choice.replace("&nbsp;","%20")+"/"+curpage
+ location.href="https://versezero.netlify.app/#/"+choice.replace("&nbsp;","%20")
 
  document.getElementById("container").style.filter="none"
  document.getElementById("buttons").style.filter="none"
@@ -383,6 +383,7 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
 
 
