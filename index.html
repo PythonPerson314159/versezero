@@ -18,7 +18,7 @@
 </center>
 
 <script>
-
+document.title="VerseZero"
 
 async function getData(choicee,pagee) {
 document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
@@ -28,7 +28,7 @@ document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
     }
 
     result = await response.text();
-if (location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")=='')
+if(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")==''||isNaN(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")*1))
 {
 choicee=pagee
 pagee=0
@@ -50,7 +50,7 @@ choicee=choicee.slice(0,-6)
 
 bookchapverse=bcv(choicee)
 numm=undefined
-if(choicee=="index.html"){numm=Math.floor(Math.random()*31102)+2}
+if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
 	if (numm!=undefined){
 [book,chap,verse]=bcv(result.split("\n")[numm+2])
 verse=[verse,verse]
@@ -377,4 +377,5 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
