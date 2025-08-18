@@ -22,13 +22,13 @@
 
 async function getData(choicee,pagee) {
 document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
-	const response = await fetch('https://raw.githubusercontent.com/iamaverycoolperson29/bible/refs/heads/main/bible.txt');
+	const response = await fetch('bible.txt');
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
 
     result = await response.text();
-if (isNaN(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")*1))
+if (location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")=='')
 {
 choicee=pagee
 pagee=0
@@ -61,7 +61,15 @@ book=bookchapverse[0]
 chap=String(bookchapverse[1])
 verse=String(bookchapverse[2])
 }
+	
+books=['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Job', 'Psalm', 'Proverbs', 'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi', 'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 'Titus', 'Philemon', 'Hebrews', 'James', '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 'Revelation', '']
 
+	for (u in books){
+if (books[u].toUpperCase()==book.toUpperCase){
+	book=books[u]
+}
+		
+	}
 if (verse.includes("-")){
 verse=verse.split("-")
 }
@@ -90,7 +98,6 @@ if (navigator.onLine==false){
 
 	
 		
-	//['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Job', 'Psalm', 'Proverbs', 'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi', 'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 'Titus', 'Philemon', 'Hebrews', 'James', '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 'Revelation', '']
 
 if (numm==undefined){
 
@@ -199,7 +206,7 @@ function goo(){
 
 
 function fin(){
-location.href="file:///C:/Users/cudenigwe/Downloads/index.html#/"+document.getElementById("thinggy").value+"/"+curpage
+location.href="https://versezero.netlify.app/#/"+document.getElementById("thinggy").value+"/"+curpage
 document.getElementById("container").style.filter="none"
 document.getElementById("buttons").style.filter="none"
   document.getElementById("ontoop").innerHTML=''
@@ -292,7 +299,7 @@ window.kboardless = function() {
 function search(){
 curpage=0
  active=0
- location.href="file:///C:/Users/cudenigwe/Downloads/index.html#/"+choice.replace("&nbsp;","%20")+"/"+curpage
+ location.href="https://versezero.netlify.app/#/"+choice.replace("&nbsp;","%20")+"/"+curpage
 
  document.getElementById("container").style.filter="none"
  document.getElementById("buttons").style.filter="none"
@@ -370,3 +377,4 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
