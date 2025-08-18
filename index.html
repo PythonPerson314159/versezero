@@ -63,12 +63,12 @@ chap=String(bookchapverse[1])
 verse=String(bookchapverse[2])
 }
 	
-
+old=book
 	for (u in books){
 if (books[u].toUpperCase()==book.toUpperCase()){
 	book=books[u]
+		choicee=choicee.replace(old,book)
 }
-		
 	}
 if (verse.includes("-")){
 verse=verse.split("-")
@@ -383,6 +383,7 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
 
 
