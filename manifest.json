@@ -1,22 +1,22 @@
 {
-    "theme_color": "#110E3E",
-    "background_color": "#101010",
-    "display": "fullscreen",
-    "scope": "/",
-    "start_url": "/",
-    "app_name": "VerseZero",
-    "short_name": "Verse0",
-    "description": "A minimalist, clutter-free Bible app",
-"icons": [
-{
-    "src": "192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-},
+  "name": "VerseZero",
+  "short_name": "Verse0",
+  "description": "A minimalist, clutter-free Bible app",
+  "theme_color": "#110E3E",
+  "background_color": "#101010",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
     {
-    "src": "512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-}
-]
+      "src": "192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
