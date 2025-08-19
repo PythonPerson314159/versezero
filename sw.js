@@ -7,7 +7,8 @@ const CACHE_NAME ='VerseZero v1'
 // The static resources that the app needs to function.
 const APP_STATIC_RESOURCES = [
   "/",
-  "/index.html",
+  "/manifest.json",
+  
   "/bible.txt"
 ];
 
