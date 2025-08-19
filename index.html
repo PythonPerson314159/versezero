@@ -24,7 +24,7 @@ books=['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Ju
 document.title="VerseZero"
 
 async function getData(choicee,pagee) {
-		choicee=choicee.replace("%20"," ")
+		choicee=choicee.replaceAll("%20"," ")
 document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
 
 
@@ -34,7 +34,7 @@ document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
     }
 
     result = await response.text();
-if(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")==''||isNaN(location.href.split("/").slice(-1)[0].replace("%20","&nbsp;")*1))
+if(location.href.split("/").slice(-1)[0].replaceAll("%20","&nbsp;")==''||isNaN(location.href.split("/").slice(-1)[0].replaceAll("%20","&nbsp;")*1))
 {
 choicee=pagee
 pagee=0
@@ -54,9 +54,9 @@ choicee=choicee.slice(0,-6)
 
 }
 
-bookchapverse=bcv(choicee.replace("&nbsp;"," "))
+bookchapverse=bcv(choicee.replaceAll("&nbsp;"," "))
 numm=undefined
-if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[1].replace("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
+if(["","versezero.netlify.app","#"].includes(location.href.split("/").slice(-2)[1].replaceAll("%20","&nbsp;"))){numm=Math.floor(Math.random()*31102)+2}
 	if (numm!=undefined){
 [book,chap,verse]=bcv(result.split("\n")[numm+2])
 verse=[verse,verse]
@@ -72,7 +72,7 @@ old=book
 	for (u in books){
 if (books[u].toUpperCase()==book.toUpperCase()){
 	book=books[u]
-		choicee=choicee.replace(old,book)
+		choicee=choicee.replaceAll(old,book)
 }
 	}
 if (verse.includes("-")){
@@ -149,7 +149,7 @@ result.split("\n").forEach((item)=>{a+=1;if (bcv(item).toString()==book+","+chap
 	for (j=b;j<=c-noninc;j++){
 	options.push(bcv(result.split("\n")[j]).toString())
 	}
-document.title="VerseZero - "+choicee.replace("&nbsp;"," ")
+document.title="VerseZero - "+choicee.replaceAll("&nbsp;"," ")
 	
 verese=verse
 maxx=0
@@ -188,14 +188,14 @@ display(curpage)
   
   
 
-  getData(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
+  getData(location.href.split("/").slice(-2)[0].replaceAll("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replaceAll("%20","&nbsp;"))
   
 
 let lastUrl = location.href;
 setInterval(() => {
   if (location.href != lastUrl) {
     lastUrl = location.href;
-  getData(location.href.split("/").slice(-2)[0].replace("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replace("%20","&nbsp;"))
+  getData(location.href.split("/").slice(-2)[0].replaceAll("%20","&nbsp;"),location.href.split("/").slice(-1)[0].replaceAll("%20","&nbsp;"))
   }
   
   document.getElementById("ismob").innerHTML=["","<button onclick=goo();this.blur()>Search</button>"][window.kboardless()*1]
@@ -310,7 +310,7 @@ window.kboardless = function() {
 function search(){
 curpage=0
  active=0
- location.href="https://versezero.netlify.app/#/"+choice.replace("&nbsp;","%20")
+ location.href="https://versezero.netlify.app/#/"+choice.replaceAll("&nbsp;","%20")
 
  document.getElementById("container").style.filter="none"
  document.getElementById("buttons").style.filter="none"
@@ -397,6 +397,7 @@ font-family:Times New Roman
     navigator.serviceWorker.register("sw.js");
   }
 </script>
+
 
 
 
