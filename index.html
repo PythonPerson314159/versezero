@@ -28,6 +28,10 @@ books=['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Ju
 document.title="VerseZero"
 
 async function getData(choicee,pagee) {
+	if (choicee === 'manifest.json' || choicee.includes('.json')) {
+    return; // Do nothing, let the server handle it
+  }
+	
 		choicee=choicee.replaceAll("%20"," ")
 document.getElementById("quote").innerHTML="<h1>Hold on a moment...</h1>"
 
@@ -392,6 +396,7 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
 
 
