@@ -1,65 +1,60 @@
-// The version of the cache.
-const VERSION = "v1";
-
-// The name of the cache
-const CACHE_NAME ='VerseZero v1'
-
-// The static resources that the app needs to function.
-const APP_STATIC_RESOURCES = [
-  "/",
-  "/manifest.json",
+const CACHE_NAME = 'versezero-cache-v1';
+const FILES_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/192.png',
   
-  "/bible.txt"
+  '/512.png',
+  '/bible.txt',
+  // Add other static assets (e.g., CSS, JS files)
 ];
 
-// On install, cache the static resources
-self.addEventListener("install", (event) => {
+// Install the service worker and cache essential files
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      cache.addAll(APP_STATIC_RESOURCES);
-    })(),
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
+  self.skipWaiting();
 });
 
-// delete old caches on activate
-self.addEventListener("activate", (event) => {
+// Activate the service worker and clean up old caches
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    (async () => {
-      const names = await caches.keys();
-      await Promise.all(
-        names.map((name) => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
           }
-          return undefined;
-        }),
+        })
       );
-      await clients.claim();
-    })(),
+    })
   );
+  self.clients.claim();
 });
 
-// On fetch, intercept server requests
-// and respond with cached responses instead of going to network
-self.addEventListener("fetch", (event) => {
-  // As a single page app, direct app to always go to cached home page.
-  if (event.request.mode === "navigate") {
-    event.respondWith(caches.match("/"));
+// Fetch event: Serve cached files or fetch from network
+self.addEventListener('fetch', (event) => {
+  // Handle requests for manifest.json
+  if (event.request.url.endsWith('/manifest.json')) {
+    event.respondWith(
+      caches.match('/manifest.json').then((response) => {
+        return response || fetch(event.request);
+      })
+    );
     return;
   }
 
-  // For all other requests, go to the cache first, and then the network.
+  // Handle other requests (e.g., bible.txt, HTML, etc.)
   event.respondWith(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request.url);
-      if (cachedResponse) {
-        // Return the cached response if it's available.
-        return cachedResponse;
-      }
-      // If resource isn't in the cache, return a 404.
-      return new Response(null, { status: 404 });
-    })(),
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request).catch(() => {
+        // Fallback for offline (optional: serve a custom offline page)
+        return caches.match('/index.html');
+      });
+    })
   );
 });
