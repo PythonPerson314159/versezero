@@ -1,11 +1,4 @@
 <head>
-	<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('SW registered:', reg))
-      .catch(err => console.error('SW registration failed:', err));
-  }
-</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="manifest" href="manifest.json" />
@@ -405,6 +398,7 @@ font-family:Times New Roman
     navigator.serviceWorker.register("sw.js");
   }
 </script>
+
 
 
 
