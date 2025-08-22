@@ -5,6 +5,7 @@
 
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/textfit/textFit.min.js"></script>
 
 <center>
 <div id=container>
@@ -236,7 +237,9 @@ if (chap.length+verese.length>=3){
 fg=chap[0]+verese[0]+"-"+chap[1]+":"+verese[1]
 }
 
-    document.getElementById('quote').innerHTML="<h1>"+thingg[curpage]+"</h1><h4>"+choicep+"<br> Page "+(curpage*1+1)+"/"+thingg.length+"</h4>"
+    document.getElementById('quote').innerHTML="<div id=apapa><h1>"+thingg[curpage]+"</h1></div><h4>"+choicep+"<br> Page "+(curpage*1+1)+"/"+thingg.length+"</h4>"
+textFit(document.getElementById("apapa"),{minFontSize: 1},{maxFontSize: 1213122})
+
 }
 
 active=0
@@ -391,6 +394,7 @@ font-size:50px;
 font-family:Times New Roman
 }
 </style>
+
 
 
 
